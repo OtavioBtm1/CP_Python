@@ -6,50 +6,91 @@
 # cria um dicionário vazio para representar o estoque
 
 
-######################### CADASTRO DE CLIENTE# #############################
-pos=["sim", "Sim", "S", "s", "Ss", "ss"]
+vend_usu = "vendedor1"
+vend_pass = "12345"
 
-print("Seja bem-vindo à Vinheria Agnello!")
-dec = None
-while dec is None:
-    dec=input("Você deseja realizar uma compra? Se sim, vamos para o cadastro!")
-    if dec in pos:
-        nome = input("Digite seu primeiro nome: ")
-        sobrenome = input("Digite seu sobrenome: ")
-        idade = int(input("Digite sua idade: "))
-
-        print("\nAgora vamos para o cadastro de endereço!")
-
-        rua = None 
-        while rua is None:
-            rua = input("Digite o nome da sua rua: ")
-
-        bairro = None
-        while bairro is None:
-            bairro = input("Digite o bairro: ")
-
-        num = None
-        while num is None:
-            num = input("Digite o número da casa: ")
-
-        cep = None
-        cep_str = input("Digite o CEP: ")
-        try:
-            cep = int(cep_str)
-        except ValueError:
-                print("Por favor, digite um CEP válido.")
-
-        comp = None
-        while comp is None:
-        
-            comp = input("Digite o complemento (opcional): ") or None
-
-##########################SISTEMA DE ESTOQUE E COMPRA#################
-
-##########################SISTEMA DE ESTOQUE E COMPRA#################
-
+# Função para definir mensagem de horário
+import datetime
+hora = datetime.datetime.now().time()
+if hora.hour < 12:
+    msg = "Bom dia!"
+elif hora.hour < 18:
+    msg = "Boa tarde!"
 else:
-        print("Obrigado, tenha um bom dia!")
+    msg = "Boa noite!"
+
+# Mensagem de boas-vindas
+print(f"{msg} Seja bem-vindo à Vinheria Agnello!")
+
+# Loop para garantir que o usuário insira uma opção válida (1 ou 2)
+while True:
+    usu = input("Você deseja logar como:\n1-Vendedor\n2-Cliente\n")
+
+    if usu == "1":
+        while True:
+            vend_usu_input = input("Digite seu e-mail: ")
+            
+            if vend_usu_input == vend_usu:
+                vend_pass_input = input("Digite sua senha: ")
+                if vend_pass_input == vend_pass:
+                    print("Login efetuado com sucesso!")
+                    # código para o menu do vendedor
+                    ##########################SISTEMA DE ESTOQUE E COMPRA#################
+                    
+                    ##########################SISTEMA DE ESTOQUE E COMPRA#################
+                    break
+                else:
+                    print("Senha incorreta. Tente novamente.")
+            else:
+                print("E-mail incorreto. Tente novamente.")
+        break
+
+    elif usu == "2":
+        pos = ["sim", "Sim", "S", "s", "Ss", "ss"]
+
+        dec = None
+        while dec is None:
+            dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro!")
+            if dec in pos:
+                nome = input("Digite seu primeiro nome: ")
+                sobrenome = input("Digite seu sobrenome: ")
+                idade = int(input("Digite sua idade: "))
+
+                print("\nAgora vamos para o cadastro de endereço!")
+
+                rua = None 
+                while rua is None:
+                    rua = input("Digite o nome da sua rua: ")
+
+                bairro = None
+                while bairro is None:
+                    bairro = input("Digite o bairro: ")
+
+                num = None
+                while num is None:
+                    num = input("Digite o número da casa: ")
+
+                cep = None
+                cep_str = input("Digite o CEP: ")
+                try:
+                    cep = int(cep_str)
+                except ValueError:
+                    print("Por favor, digite um CEP válido.")
+
+                comp = None
+                while comp is None or not comp.strip():
+                    comp = input("Digite o complemento (opcional): ") or None
+                print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}")     
+                break
+
+            break
+
+        else:
+            print("Opção inválida. Tente novamente.")
+
+
+    else:
+            print(f"Obrigado, {msg}!")
 ######################### CADASTRO DE CLIENTE# #############################
 
 
