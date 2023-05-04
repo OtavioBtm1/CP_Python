@@ -29,67 +29,81 @@ while True:
     if usu == "1":
         while True:
             vend_usu_input = input("Digite seu e-mail: ")
-            
             if vend_usu_input == vend_usu:
                 vend_pass_input = input("Digite sua senha: ")
                 if vend_pass_input == vend_pass:
                     print("Login efetuado com sucesso!")
                     # código para o menu do vendedor
+                    ########################## SISTEMA DE ESTOQUE E COMPRA#################
                     ##########################SISTEMA DE ESTOQUE E COMPRA#################
-                    
-                    ##########################SISTEMA DE ESTOQUE E COMPRA#################
-                    break
+                    print(f"Obrigado, {msg}!")
+                    exit()
                 else:
                     print("Senha incorreta. Tente novamente.")
             else:
                 print("E-mail incorreto. Tente novamente.")
-        break
+                break
 
     elif usu == "2":
         pos = ["sim", "Sim", "S", "s", "Ss", "ss"]
-
         dec = None
-        while dec is None:
-            dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro!")
-            if dec in pos:
-                nome = input("Digite seu primeiro nome: ")
-                sobrenome = input("Digite seu sobrenome: ")
-                idade = int(input("Digite sua idade: "))
+        while dec is None:  # cadastro de usuário e senha
+            usuarios = {}
+        while True:
+            print("Bem-vindo ao sistema de cadastro!")
+            usuario = input("Digite seu nome de usuário: ")
+            senha = input("Digite sua senha: ")
+            if usuario in usuarios:
+                print("Usuário já existe. Por favor, tente novamente.")
+            else:
+                usuarios[usuario] = senha
+                print("Usuário cadastrado com sucesso!")
+                break
 
-                print("\nAgora vamos para o cadastro de endereço!")
+        # login de usuário e senha
+        while True:
+            print("Bem-vindo ao sistema de login!")
+            usuario_login = input("Digite seu nome de usuário: ")
+            senha_login = input("Digite sua senha: ")
+            if usuario_login in usuarios and usuarios[usuario_login] == senha_login:
+                print("Login efetuado com sucesso!")
+                dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro!")
+                if dec in pos:
+                    nome = input("Digite seu primeiro nome: ")
+                    sobrenome = input("Digite seu sobrenome: ")
+                    idade = int(input("Digite sua idade: "))
 
-                rua = None 
-                while rua is None:
-                    rua = input("Digite o nome da sua rua: ")
+                    print("\nAgora vamos para o cadastro de endereço!")
 
-                bairro = None
-                while bairro is None:
-                    bairro = input("Digite o bairro: ")
+                    rua = None
+                    while rua is None:
+                        rua = input("Digite o nome da sua rua: ")
 
-                num = None
-                while num is None:
-                    num = input("Digite o número da casa: ")
+                    bairro = None
+                    while bairro is None:
+                        bairro = input("Digite o bairro: ")
 
-                cep = None
-                cep_str = input("Digite o CEP: ")
-                try:
-                    cep = int(cep_str)
-                except ValueError:
-                    print("Por favor, digite um CEP válido.")
+                    num = None
+                    while num is None:
+                        num = input("Digite o número da casa: ")
 
-                comp = None
-                while comp is None or not comp.strip():
-                    comp = input("Digite o complemento (opcional): ") or None
+                    cep = None
+                    cep_str = input("Digite o CEP: ")
+                    try:
+                        cep = int(cep_str)
+                    except ValueError:
+                        print("Por favor, digite um CEP válido.")
+
+                    comp = None
+                    while comp is None or not comp.strip():
+                        comp = input("Digite o complemento (opcional): ") or None
                 print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}")     
                 break
 
-            break
-
-        else:
-            print("Opção inválida. Tente novamente.")
-
-
     else:
+        print("Opção inválida. Tente novamente.")        
+    
+else:
             print(f"Obrigado, {msg}!")
 ######################### CADASTRO DE CLIENTE# #############################
 
